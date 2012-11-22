@@ -3,6 +3,9 @@
 
   <%= render :partial => "form" %>
 
-  <h2>Merge Articles</h2>
-  Article ID: <input type='text' name='merge_with' id='merge_with' />
+  <% # LefaM: SaaS Homework 1 %>
+  <% if User.id_of_admin?(session[:user_id]) and params[:id]  %>
+    <h2>Merge Articles</h2>
+    Article ID: <input type='text' name='merge_with' id='merge_with' />
+  <% end %>
 <% end %>

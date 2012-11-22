@@ -22,4 +22,4 @@ Scenario: non-admins cannot merge articles
   And I follow "All Articles"
   Then I should see "Manage articles"
 
-
+Scenario: merged articles should contain the text of both previous articles

@@ -54,6 +54,18 @@ class User < ActiveRecord::Base
     self.settings ||= {}
   end
 
+  #
+  # By lefam: homework part 1
+  # Determines if a user with a giver id is an admin or not.
+  #
+  def self.id_of_admin?(id)
+    user = User.find_by_id(id)
+    print user
+    if user then
+      return user.admin?
+    end
+    return false
+  end
 
   def self.authenticate(login, pass)
     find(:first,
