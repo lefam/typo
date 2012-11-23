@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
   end
 
-  match 'admin/content/merge/:id1' => 'admin/content#merge_with'
+  match 'admin/content/merge/:id' => 'admin/content#merge_with'
 
   # for CK Editor
   match 'fm/filemanager(/:action(/:id))', :to => 'Fm::Filemanager', :format => false

@@ -5,7 +5,7 @@
   <% # LefaM: SaaS Homework 1 %>
   <% if User.id_of_admin?(session[:user_id]) and params[:id]  %>
     <h2>Merge Articles</h2>
-     <%= form_tag("/admin/content/merge/#{params[:id]}") %>
+     <%= form_tag(url_for(:controller => 'admin/content', :action => 'merge_with', :id => params[:id]))  %>
     Article ID: <input type='text' name='merge_with' /> <br />
     <input type='submit' value='Merge' />
     </form>
