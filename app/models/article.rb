@@ -71,6 +71,20 @@ class Article < Content
     end
   end
 
+  # lefam: homework 1
+  def merge_with(article_id)
+    merged_article = self.dup
+    self.delete
+
+    second_article = Article.find_by_id(article_id)
+    merged_article.comments = merged_article.comments + second_article.dup.comments
+    merged_article.title = self.title + " " + second_article.title
+    merged_article.body = self.body + " " + second_article.body
+    second_article.delete
+
+    merged_article.save!    
+  end
+
   def set_permalink
     return if self.state == 'draft'
     self.permalink = self.title.to_permalink if self.permalink.nil? or self.permalink.empty?
@@ -465,19 +479,5 @@ class Article < Content
     to = from + 1.day unless day.blank?
     to = to - 1 # pull off 1 second so we don't overlap onto the next day
     return from..to
-  end
-
-  # lefam: homework 1
-  def merge_with(article_id)
-    merged_article = self.dup
-    self.delete
-
-    second_article = Article.find_by_id(article_id)
-    merged_article.comments = merged_article.comments + second_article.dup.comments
-    merged_article.title = self.title + " " + second_article.title
-    merged_article.body = self.body + " " + second_article.body
-    second_article.delete
-
-    merged_article.save!    
   end
 end
