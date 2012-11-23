@@ -6,7 +6,7 @@
   <% if User.id_of_admin?(session[:user_id]) and params[:id]  %>
     <h2>Merge Articles</h2>
      <%= form_tag("/admin/content/merge/#{params[:id]}") %>
-    Article ID: <input type='text' name='merge_with' id='merge_with' /> <br />
+    Article ID: <input type='text' id='merge_with' /> <br />
     <input type='submit' value='Merge' />
     </form>
   <% end %>
