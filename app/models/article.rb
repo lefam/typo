@@ -77,7 +77,7 @@ class Article < Content
     self.delete
 
     second_article = Article.find_by_id(article_id)
-    merged_article.comments = merged_article.comments + second_article.dup.comments
+    merged_article.comments = merged_article.comments + second_article.comments.dup
     merged_article.title = self.title + " " + second_article.title
     merged_article.body = self.body + " " + second_article.body
     second_article.delete
