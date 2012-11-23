@@ -23,9 +23,19 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
+  # lefam: homework 1
   def merge_with
-    
-
+    if (params.has_key? :id1) and (params.has_key? :merge_with) then
+      if params[:id1] != params[:merge_with] then
+        article1 = Article.find_by_id(params[:id1])
+        merged = article1.merge_with(params[:merge_with])
+        flash[:notice] = 'Merged with success'
+        redirect_to :action => 'index'
+        return
+      end      
+    end
+    flash[:notice] = "Failed to merge. Please, ensure the parameters are valid!"
+    redirect_to :action => 'index'    
   end
 
   def new

@@ -467,11 +467,17 @@ class Article < Content
     return from..to
   end
 
+  # lefam: homework 1
   def merge_with(article_id)
-    second_article = Article.find_by_id(article_id)
     merged_article = self.dup
+    self.delete
+
+    second_article = Article.find_by_id(article_id)
+    merged_article.comments = merged_article.comments + second_article.dup.comments
     merged_article.title = self.title + " " + second_article.title
     merged_article.body = self.body + " " + second_article.body
-    return merged_article.save
+    second_article.delete
+
+    merged_article.save!    
   end
 end
